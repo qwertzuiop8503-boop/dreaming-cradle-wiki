@@ -1,0 +1,7 @@
+# 원본 작업 자료 (용량이 크고 웹에는 필요 없음)
+자료/
+# 미리보기 서버 설정, 전시용 브라우저 설정
+.claude/
+.kiosk-profile/
+# 폰트 원본 (fonts.css 안에 이미 들어 있음)
+assets/fonts/
