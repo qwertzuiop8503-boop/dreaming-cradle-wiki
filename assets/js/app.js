@@ -339,6 +339,9 @@
       s.setAttribute("aria-pressed", on);
     });
     $("#inv-detail-body").innerHTML = invDetail(invList[i]);
+    // 폰처럼 정보창이 화면 밖(아래)에 있으면 보이는 곳까지 살짝 내려줌
+    const box = $(".inv-detail").getBoundingClientRect();
+    if (box.bottom > window.innerHeight - 70) $(".inv-detail").scrollIntoView({ behavior: "smooth", block: "end" });
   }
 
   function renderItems() {

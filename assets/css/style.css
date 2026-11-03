@@ -33,7 +33,7 @@
 
 /* ============ Base ============ */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body {
   margin: 0;
   font-family: var(--body);
@@ -159,9 +159,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
   min-width: 200px; margin: 0; padding: 9px 0; list-style: none;
   background: var(--card-2); border: 1px solid var(--card-line); border-radius: var(--r);
   box-shadow: 0 6px 14px rgba(0,0,0,.18);
-  opacity: 0; visibility: hidden; transform: translateY(-4px); transition: .12s;
+  display: none; max-width: calc(100vw - 24px);
 }
-.lnav__item.is-open .lnav__list { opacity: 1; visibility: visible; transform: none; }
+.lnav__item.is-open .lnav__list { display: block; animation: drop-in .12s ease-out; }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-4px); } }
 .lnav__list a { display: flex; align-items: center; gap: 8px; padding: 6px 18px; color: var(--text); font-size: 14px; text-decoration: none !important; }
 .lnav__list a:hover { background: rgba(255,255,255,.6); color: var(--link); }
 .lnav__list img { width: 24px; height: 24px; object-fit: contain; }
@@ -574,11 +575,62 @@ button.inv-slot:hover { transform: translateY(-2px); box-shadow: 0 4px 0 rgba(23
   .page { padding: 0 0 30px; }
   .side-tools { display: none; }
   .page__main { padding: 18px 16px 24px; border-radius: 0; }
-  .page-header { flex-wrap: wrap; }
-  .page-title { font-size: 28px; }
-  .home-cols, .panels, .rail { grid-template-columns: 1fr; }
+  .page-header { flex-wrap: wrap; gap: 6px; }
+  .page-title { font-size: 26px; }
+  .home-cols, .panels, .rail, .shops { grid-template-columns: 1fr; }
   .rail { padding: 0 16px; }
-  .gallery__item { width: 50%; }
+  .gallery__item { width: 50%; padding: 6px; }
+  .gallery__thumb { height: 140px; }
+
+  .infobox__img { height: 300px; }
+  .infobox__img img { max-height: 276px; }
+  .infobox__img[data-view="sd"] img { max-height: 210px; }
+
+  /* 상단 바 · 헤더 */
+  .topbar { padding: 0 12px; gap: 8px; }
+  .topbar__brand img { height: 30px; }
+  .ch__inner { padding: 14px 12px; gap: 10px; }
+  .ch__icon { width: 76px; height: 56px; }
+  .ch__name { font-size: 18px; }
+  .lnav { flex-wrap: wrap; margin-top: 2px; }
+  .lnav__btn { height: 34px; margin-right: 4px; font-size: 12px; }
+  .lnav__item:last-child .lnav__list { left: auto; right: -8px; }
+  .lnav__list { min-width: 180px; }
+
+  /* 본문 */
+  .content h2 { font-size: 20px; margin-top: 26px; }
+  .toc { display: block; }
+  .wikitable { font-size: 13px; }
+  .wikitable--kv th { width: 104px; white-space: normal; }
+  .license { margin-top: 28px; }
+
+  /* 대문 슬라이드: 캡션 한 줄 + 썸네일 줄 */
+  .figure .slideshow__nav { flex-wrap: wrap; gap: 8px; padding: 8px 10px 10px; }
+  .slideshow__caption { flex-basis: 100%; }
+  .slideshow__thumbs { width: 100%; }
+  .slideshow__thumb { flex: 1; width: auto; height: 40px; }
+  .slideshow__arrow { width: 34px; height: 34px; }
+
+  /* 인벤토리 */
+  .inv-win { border-width: 3px; border-radius: 12px; }
+  .inv-win__bar { padding: 10px 10px 6px 12px; }
+  .inv-win__title { font-size: 15px; }
+  .inv-win__btns i { width: 20px; height: 20px; border-width: 2px; }
+  .inv-tabs { padding: 0 6px; gap: 3px; }
+  .inv-tab { height: 34px; padding: 0 4px; font-size: 11px; border-width: 2px; }
+  .inv-grid { grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 6px; padding: 8px; max-height: 360px; }
+  .inv-slot { border-width: 3px; padding: 4px; }
+  .inv-detail__body { grid-template-columns: 92px 1fr; column-gap: 12px; padding: 4px 12px 14px; }
+  .inv-detail__icon { width: 92px; height: 92px; padding: 8px; border-width: 3px; }
+  .inv-detail__name { font-size: 17px; }
+
+  /* 푸터 */
+  .gfooter__inner { grid-template-columns: 1fr 1fr; gap: 22px; padding: 28px 16px 18px; }
+  .gfooter__brand { grid-column: 1 / -1; }
+
+  /* 이미지 크게 보기 */
+  .lightbox__top { padding: 8px 10px; }
+  .lightbox__body { padding: 0 8px 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

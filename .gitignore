@@ -5,3 +5,5 @@
 .kiosk-profile/
 # 폰트 원본 (fonts.css 안에 이미 들어 있음)
 assets/fonts/
+# QR 코드 (인쇄용 파일)
+QR코드/
