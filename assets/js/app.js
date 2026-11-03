@@ -664,7 +664,7 @@
   /* ---------- kiosk / idle ---------- */
   // 전시용 기능은 전시 PC에서 파일로 열었을 때(전시용 실행.bat)만 켜짐. 웹 주소로 들어오면 꺼짐.
   // 주소 끝에 ?kiosk 를 붙이면 웹에서도 강제로 켤 수 있음.
-  const exhibit = location.protocol === "file:" || /[?&]kiosk/.test(location.search);
+  const exhibit = location.protocol === "file:" || /[?&]kiosk/.test(location.search);
 
   if (W.site.kiosk && exhibit) {
     document.body.classList.add("kiosk");
